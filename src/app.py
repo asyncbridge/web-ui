@@ -24,6 +24,10 @@ UPLOAD_FOLDER = "/tmp/crested_gecko_detection_uploads"
 
 DETECTED_IMAGE_OUTPUT_WIDTH = 512
 
+POST_API_URI_TASK01 = 'http://211.46.63.231:5001/detect_object?embed_image=false'
+POST_API_URI_TASK02 = 'http://211.46.63.231:5002/detect_object?embed_image=false'
+POST_API_URI_TASK03 = 'http://211.46.63.231:5003/detect_object?embed_image=false'
+
 app = flask.Flask(__name__)
 
 # added - draw bounding box and label for tt100k
@@ -274,7 +278,7 @@ def classify_upload_task01():
             'submitImageFile': (imagefile.filename, open(filename, 'rb'))
         }
  
-        response = requests.post('http://211.46.63.231:5001/detect_object?embed_image=false', files=multipart_form_data)
+        response = requests.post(POST_API_URI_TASK_01, files=multipart_form_data)
 
     except Exception as err:
         logging.info('Uploaded image open error: %s', err)
@@ -364,7 +368,7 @@ def classify_upload_task02():
             'submitImageFile': (imagefile.filename, open(filename, 'rb'))
         }
 
-        response = requests.post('http://211.46.63.231:5002/detect_object?embed_image=false', files=multipart_form_data)
+        response = requests.post(POST_API_URI_TASK_02, files=multipart_form_data)
 
     except Exception as err:
         logging.info('Uploaded image open error: %s', err)
@@ -438,7 +442,7 @@ def classify_upload_task03():
             'submitImageFile': (imagefile.filename, open(filename, 'rb'))
         }
 
-        response = requests.post('http://211.46.63.231:5003/detect_object?embed_image=false', files=multipart_form_data)
+        response = requests.post(POST_API_URI_TASK_03, files=multipart_form_data)
 
         '''
         image_output_width = DETECTED_IMAGE_OUTPUT_WIDTH
@@ -459,7 +463,7 @@ def classify_upload_task03():
             'submitImageFile': (imagefile.filename, open(filename, 'rb'))
         }
 
-        response = requests.post('http://211.46.63.231:5003/detect_object?embed_image=false', files=multipart_form_data)
+        response = requests.post(POST_API_URI_TASK_03, files=multipart_form_data)
         '''
     except Exception as err:
         logging.info('Uploaded image open error: %s', err)

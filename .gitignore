@@ -1,0 +1,6 @@
+# Created by .ignore support plugin (hsz.mobi)
+/crested-gecko-object-detector.iml
+/venv/
+/.idea/
+/src/__pycache__/
+*.iml

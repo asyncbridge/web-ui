@@ -1,0 +1,10 @@
+werkzeug
+flask
+tornado
+numpy
+pandas
+pillow
+pyyaml
+opencv-python
+requests
+matplotlib

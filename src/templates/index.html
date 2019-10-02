@@ -1,0 +1,285 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="AI.BakeVision Lab.">
+    <meta name="author" content="Jinmyung Joo">
+    <meta name="generator" content="AI.BakeVision Lab. v0.0.1">
+	<link rel="icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
+    <title>AI.BakeVision Lab.</title>
+
+    <!-- Bootstrap core CSS -->
+<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+      <style>
+          .carousel-item{
+              height:100vh;
+              background-size:cover !important;
+              background-position:center !important;
+          }
+      </style>
+
+
+      <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/carousel.css') }}" rel="stylesheet">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115637647-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-115637647-2');
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-4384983497552687",
+          enable_page_level_ads: true
+     });
+</script>
+
+ 
+  </head>
+  <body>
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">AI.BakeVision Lab.</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">AI Research</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="dropdown-item" href="/task01" target="_blank">Object Detection(COCO Dataset)</a>
+                <a class="dropdown-item" href="/task02" target="_blank">Object Detection(Crested Gecko Dataset)</a>
+                <a class="dropdown-item" href="/task03" target="_blank">Object Detection(Tsinghua-Tencent 100K)</a>
+            </div>
+        </li>
+		<!--li class="nav-item active">
+          <a class="nav-link" href="/detect" target="_blank">Detect Crested Gecko<span class="sr-only">(current)</span></a>
+        </li-->
+        <!--li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li-->
+      </ul>
+      <!--form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form-->
+    </div>
+  </nav>
+</header>
+
+
+<main role="main">
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div-- class="carousel-inner">
+      <div class="carousel-item active" style="background:url({{ url_for('static', filename='image/carousel_01.jpeg') }})">
+        <!--svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><rect fill="#777" width="100%" height="100%"/></svg-->
+        <!--img class="bd-placeholder-img" width="100%" height="100%" src="{{ url_for('static', filename='image/carousel_01.jpeg') }}" /-->
+        <div class="container">
+          <div class="carousel-caption text-left">
+            <h1>Object Detection</h1>
+            <p>This is object detection service which is trained by COCO dataset. The COCO dataset have 80 classes. It uses Darknet YOLOv3-608 model for object detection.</p>
+            <p><a class="btn btn-lg btn-primary" href="/task01" target="_blank" role="button">Let's detect</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" style="background:url({{ url_for('static', filename='image/carousel_02.jpeg') }})">
+        <!--svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><rect fill="#777" width="100%" height="100%"/></svg-->
+        <!--img class="bd-placeholder-img" src="{{ url_for('static', filename='image/carousel_01.jpeg') }}" style="width:1332px;height:500px" /-->
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Crested Gecko Object Detection</h1>
+            <p>This service provides web based object detection for crested gecko. The crested gecko has various morphs and traits. It helps them to understand it easily through this service.</p>
+            <p><a class="btn btn-lg btn-primary" href="/task02" target="_blank" role="button">Let's detect</a></p>
+          </div>
+        </div>
+      </div>
+       <div class="carousel-item" style="background:url({{ url_for('static', filename='image/carousel_03.jpeg') }})">
+        <!--svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><rect fill="#777" width="100%" height="100%"/></svg-->
+        <!--img class="bd-placeholder-img" src="{{ url_for('static', filename='image/carousel_01.jpeg') }}" style="width:1332px;height:500px" /-->
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Tsinghua-Tencent 100K Object Detection</h1>
+            <p>This is object detection service which is trained by Tsinghua-Tencent 100K. The Tsinghua-Tencent dataset consists of Chinese traffic-sign classes. It uses FPN-CNN model which is proposed by my paper for object detection.</p>
+            <p><a class="btn btn-lg btn-primary" href="/task03" target="_blank" role="button">Let's detect</a></p>
+          </div>
+        </div>
+      </div>
+      <!--div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><rect fill="#777" width="100%" height="100%"/></svg>
+        <img class="bd-placeholder-img" src="{{ url_for('static', filename='image/carousel_03.jpeg') }}" style="width:1326px;height:500px" />
+        <div class="container">
+          <div class="carousel-caption text-right">
+            <h1>Objective</h1>
+            <p>Help the beginner of breeder to easily understand the morphs and traits of the crested gecko.</p>
+            <p><a class="btn btn-lg btn-primary" href="#objective" role="button">Learn more</a></p>
+          </div>
+        </div>
+      </div-->
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <!--
+    <div class="row">
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect fill="#777" width="100%" height="100%"/><text fill="#777" dy=".3em" x="50%" y="50%">140x140</text></svg>
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect fill="#777" width="100%" height="100%"/><text fill="#777" dy=".3em" x="50%" y="50%">140x140</text></svg>
+        <h2>Heading</h2>
+        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect fill="#777" width="100%" height="100%"/><text fill="#777" dy=".3em" x="50%" y="50%">140x140</text></svg>
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
+    -->
+
+
+    <!-- START THE FEATURETTES -->
+    <a name="background"></a>
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Object Detection. <span class="text-muted">Detect the objects.
+</span></h2>
+
+        <p class="lead">This is object detection service which is trained by COCO dataset. The COCO dataset have 80 classes. It uses Darknet YOLOv3-608 model for object detection.</p>
+      </div>
+      <div class="col-md-5">
+        <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect fill="#eee" width="100%" height="100%"/><text fill="#aaa" dy=".3em" x="50%" y="50%">500x500</text></svg>-->
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{{ url_for('static', filename='image/desc_01.png') }}" width="500" height="500"/>
+      </div>
+    </div>
+
+    <a name="objective"></a>
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Object Detection. <span class="text-muted">Detect the crested gecko.</span></h2>
+        <p class="lead">The project name is "Lilly White". It provides web based object detection service for crested gecko. The crested gecko has various morphs and traits. It is difficult for the beginner of breeder to classify morphs and traits of the crested gecko. It helps them to understand it easily through this service.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+<img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{{ url_for('static', filename='image/desc_02.png') }}" width="500" height="500"/>
+        <!--svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect fill="#eee" width="100%" height="100%"/><text font-size="25pt" fill="#aaa" dy=".3em" x="50%" y="50%">Under Construction</text></svg-->
+        <!--img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{{ url_for('static', filename='image/desc_02.png') }}" width="500" height="500"/-->
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Object Detection. <span class="text-muted">Detect the Tsinghua-Tencent 100K.</span></h2>
+        <p class="lead">This is object detection service which is trained by Tsinghua-Tencent 100K. The Tsinghua-Tencent dataset consists of Chinese traffic-sign classes. It uses FPN-CNN model which is proposed by my paper for object detection. I deployed Caffe deep learning framework and used GPU computing for object detection based on Docker. The model files are downloaded from AWS S3 whenever starting Docker container service.</p>
+      </div>
+      <div class="col-md-5">
+        <!--svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect fill="#eee" width="100%" height="100%"/><text fill="#aaa" dy=".3em" x="50%" y="50%">500x500</text></svg-->
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{{ url_for('static', filename='image/desc_03.png') }}" width="500" />
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+
+  <!-- FOOTER -->
+  <!--footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2018-2019 Bake Vision Laboratory &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer-->
+  
+  <footer class="container">
+	<p class="float-right"><a href="#">Back to top</a></p>
+    <div class="row">  
+      <div class="col-12 col-md-3">  
+        <img class="mb-2" src="{{ url_for('static', filename='image/bi.png') }}" alt="" width="24" height="24">
+        <small class="d-block mb-3 text-muted">&copy; 2018-2019 AI.BakeVision Lab.</small>
+      </div>
+      <div class="col-12 col-md-5">
+        <h5>AI Research</h5>
+        <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="/task01" target="_blank">Object Detection(COCO Dataset)</a></li>
+            <li><a class="text-muted" href="/task02" target="_blank">Object Detection(Crested Gecko Dataset)</a></li>
+            <li><a class="text-muted" href="/task03" target="_blank">Object Detection(Tsinghua-Tencent 100K)</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="mailto:jm84.joo@gmail.com">Email</a></li>
+          <li><a class="text-muted" href="http://arclab.tistory.com" target="_blank">Blog</a></li>
+          <li><a class="text-muted" href="https://github.com/asyncbridge" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  
+</main>
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.slim.min.js') }}"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+	  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script></body>
+</html>
+
+

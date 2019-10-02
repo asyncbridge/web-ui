@@ -24,9 +24,9 @@ UPLOAD_FOLDER = "/tmp/crested_gecko_detection_uploads"
 
 DETECTED_IMAGE_OUTPUT_WIDTH = 512
 
-POST_API_URI_TASK01 = 'http://211.46.63.231:5001/detect_object?embed_image=false'
-POST_API_URI_TASK02 = 'http://211.46.63.231:5002/detect_object?embed_image=false'
-POST_API_URI_TASK03 = 'http://211.46.63.231:5003/detect_object?embed_image=false'
+POST_API_URI_TASK_01 = 'http://211.46.63.231:5001/detect_object?embed_image=false'
+POST_API_URI_TASK_02 = 'http://211.46.63.231:5002/detect_object?embed_image=false'
+POST_API_URI_TASK_03 = 'http://211.46.63.231:5003/detect_object?embed_image=false'
 
 app = flask.Flask(__name__)
 

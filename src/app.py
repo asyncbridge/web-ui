@@ -24,9 +24,10 @@ UPLOAD_FOLDER = "/tmp/crested_gecko_detection_uploads"
 
 DETECTED_IMAGE_OUTPUT_WIDTH = 512
 
-POST_API_URI_TASK_01 = 'http://localhost:5001/detect_object?embed_image=false'
-POST_API_URI_TASK_02 = 'http://localhost:5002/detect_object?embed_image=false'
-POST_API_URI_TASK_03 = 'http://localhost:5003/detect_object?embed_image=false'
+HOSTNAME = 'localhost'
+POST_API_URI_TASK_01 = 'http://'+HOSTNAME+':5001/detect_object?embed_image=false'
+POST_API_URI_TASK_02 = 'http://'+HOSTNAME+':5002/detect_object?embed_image=false'
+POST_API_URI_TASK_03 = 'http://'+HOSTNAME+':5003/detect_object?embed_image=false'
 
 app = flask.Flask(__name__)
 
@@ -236,7 +237,8 @@ def classify_upload_task01():
         logging.info('imagefile: %s', imagefile)
 
         filename_ = str(datetime.datetime.now()).replace(' ', '_') + \
-                    werkzeug.secure_filename(imagefile.filename)
+                    imagefile.filename
+                    #werkzeug.secure_filename(imagefile.filename)
         filename = os.path.join(UPLOAD_FOLDER, filename_)
 
         imagefile.save(filename)

@@ -16,6 +16,7 @@ import requests
 import numpy as np
 import anno_func
 
+
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
@@ -229,6 +230,9 @@ def detect_task03():
 
 @app.route('/task01_classify_upload', methods=['POST'])
 def classify_upload_task01():
+    if not os.path.exists(UPLOAD_FOLDER):
+        os.makedirs(UPLOAD_FOLDER)
+
     if flask.request.files['submitImageFile'].filename == '':
         return http_error_response("There is no image file.", 412)
 
@@ -237,8 +241,7 @@ def classify_upload_task01():
         logging.info('imagefile: %s', imagefile)
 
         filename_ = str(datetime.datetime.now()).replace(' ', '_') + \
-                    imagefile.filename
-                    #werkzeug.secure_filename(imagefile.filename)
+                    werkzeug.secure_filename(imagefile.filename)
         filename = os.path.join(UPLOAD_FOLDER, filename_)
 
         imagefile.save(filename)
@@ -320,6 +323,9 @@ def classify_upload_task01():
 
 @app.route('/task02_classify_upload', methods=['POST'])
 def classify_upload_task02():
+    if not os.path.exists(UPLOAD_FOLDER):
+        os.makedirs(UPLOAD_FOLDER)
+
     if flask.request.files['submitImageFile'].filename == '':
         return http_error_response("There is no image file.", 412)
 
@@ -406,6 +412,9 @@ def classify_upload_task02():
 
 @app.route('/task03_classify_upload', methods=['POST'])
 def classify_upload_task03():
+    if not os.path.exists(UPLOAD_FOLDER):
+        os.makedirs(UPLOAD_FOLDER)
+
     if flask.request.files['submitImageFile'].filename == '':
         return http_error_response("There is no image file.", 412)
 

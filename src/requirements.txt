@@ -1,5 +1,6 @@
-werkzeug
+werkzeug==0.16.0
 flask
+gunicorn
 tornado
 numpy
 pandas

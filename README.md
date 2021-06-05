@@ -6,6 +6,7 @@ This repository is a web ui docker container for object detection and the other 
 - COCO dataset([task01](http://ai.bakevision.com/task01))  
 - Crested Gecko dataset([task02](http://ai.bakevision.com/task02))  
 - Tsinghua-Tencent 100K dataset([task03](http://ai.bakevision.com/task03))  
+- Clova Custom Extension(MyPet)([task04](http://ai.bakevision.com/task04))  
 
 ## How to setup Object Detection Backend REST API Uri
 You can edit the backend REST API for object detection.  

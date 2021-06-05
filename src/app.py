@@ -15,7 +15,8 @@ import cv2
 import requests
 import numpy as np
 import anno_func
-
+import base64
+from clova import ClovaMyPet
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -509,7 +510,27 @@ def classify_upload_task03():
 
 @app.route('/task04_mypet', methods=['POST'])
 def task04_mypet():
-   print("test task04")
+   signatureCEK = ''
+   message = ''
+
+   if 'SignatureCEK' in request.headers:
+     signatureCEK = request.headers['SignatureCEK']
+
+   data = request.get_json()
+   requestBody = json.dumps(data)
+   
+   print("request body: "+requestBody)
+   print("signatureCEK type: ")
+   print(type(signatureCEK))
+   print("signatureCEK: "+signatureCEK)   
+ 
+   iclova = ClovaMyPet()
+   isValid = iclova.verifySignature(requestBody, signatureCEK)
+   
+   if isValid == True:
+     return http_success_response("Ok", "Signature CEK is valid.")
+   else:
+     return http_error_response("Signature CEK is invalid.", 401)
 
 
 if __name__ == '__main__':

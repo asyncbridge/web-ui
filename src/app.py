@@ -229,6 +229,10 @@ def detect_task02():
 def detect_task03():
     return flask.render_template('detect_tt100k.html', has_result=False)
 
+@app.route('/task04')
+def detect_task03():
+    return flask.render_template('clova_mypet.html', has_result=False)
+
 @app.route('/task01_classify_upload', methods=['POST'])
 def classify_upload_task01():
     if not os.path.exists(UPLOAD_FOLDER):

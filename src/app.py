@@ -507,6 +507,11 @@ def classify_upload_task03():
     return flask.render_template('detect_tt100k.html', has_result=True, result=(True, num_of_result, detected_result, elapsed_time),
                                                                   imagesrc=embed_detected_image)
 
+@app.route('/task04_mypet', methods=['POST'])
+def task04_mypet():
+   print("test task04")
+
+
 if __name__ == '__main__':
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)

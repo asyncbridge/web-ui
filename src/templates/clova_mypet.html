@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8">
     <!--meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"-->
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="minimum-scale=1, width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <meta name="description" content="AI.BakeVision Lab.">
     <meta name="author" content="Jinmyung Joo">
     <meta name="generator" content="AI.BakeVision Lab. v0.0.1">
     <link rel="icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
-    <title>Object Detection(Tsinghua-Tencent 100K)</title>
+    <title>Clova Custom Extension(MyPet)</title>
 
     <!-- Bootstrap core CSS -->
-<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+      <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="{{ url_for('static', filename='css/loader-default.css') }}" rel="stylesheet">
-      <div class="loader loader-default is-active" id="loader-circle" data-text="Loading..." style="display:none"></div>
     <style>
+ 
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -30,8 +30,8 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/carousel.css') }}" rel="stylesheet">
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
+    
+   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115637647-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -48,9 +48,10 @@
           enable_page_level_ads: true
      });
 </script>
-    
+  
   </head>
-  <body>
+  <body id="main_body">
+  <div class="loader loader-default is-active" id="loader-circle" data-text="Loading..." style="display:none"></div>
 
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -61,7 +62,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Object Detection(Tsinghua-Tencent 100K)<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/task04">Clova Custom Extension(MyPet)<span class="sr-only">(current)</span></a>
             </li>
           </ul>
         </div>
@@ -75,21 +76,19 @@
 
   <div class="container">
 
-   <div class="py-3 text-center">
+    <div class="py-3 text-center">
       <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='image/bi.png') }}" alt="" width="72" height="72">
-      <h2>Tsinghua-Tencent 100K Detection</h2>
-      <p class="lead">FPN-CNN Model which is trained by Tsinghua-Tencent 100K</p>
-      <p class="lead">Detection Classes: [Chinese traffic-sign classes]</p>
-      <img class="media-object center" src="{{ url_for('static', filename='image/tt100k_classes.png') }}"><br/></br/>
-      <a href="{{ url_for('static', filename='image/2.jpg') }}" download>Sample data 01</a><br/>
-      <a href="{{ url_for('static', filename='image/10790.jpg') }}" download>Sample data 02</a><br/>
-      <a href="{{ url_for('static', filename='image/13073.jpg') }}" download>Sample data 03</a><br/><br/>
-      <a href="https://cg.cs.tsinghua.edu.cn/traffic-sign/" target="_blank">* You can download the full dataset here.</a><br/><br/>
-      <p class="lead">Please submit your Tsinhgua-Tencent-100K image file that you want to detect.</p>
+      <h2>Clova Custom Extension</h2>
+        <p class="lead">마이펫</p>
+        <img class="media-object center" width="300px" src="{{ url_for('static', filename='image/clova.png') }}"><br/><br/>
+        <p class="lead">클로바 AI 스피커 또는 클로바 iOS/Android 앱을 통해 마이펫 스킬을 실행합니다.</p>
+	<p class="lead">1. 마이펫 실행해줘.</p>
+	<p class="lead">2. 오늘 밥 먹었는지 확인해줘.</p>
+	<p class="lead">3. 마이펫 종료해줘. </p>
     </div>
 
-    <div class="row justify-content-center">
-      <form id="formupload" role="form" action="task03_classify_upload" method="post" enctype="multipart/form-data">
+    <!--div class="row justify-content-center">
+      <form id="formupload" role="form" action="task01_classify_upload" method="post" enctype="multipart/form-data">
         <div class="form-group">
         {% if has_result %}
           {% if not result[0] %}
@@ -97,22 +96,22 @@
           {% else %}
             <img class="media-object center" width="350" src={{ imagesrc }}><br/><br/>
             <p># of detected objects: {{ result[1] }}</p>
-            [Detected Class/Score]</br> 
+            <p>[Detected Class/Probability]</br>
             {% if result[1]  %}
                {% for obj in result[2] %}
-                  - {{ obj['category'] }} : {{ '%d' | format(obj['score']) }}</br>
+                  - {{ obj['class_name'] }} : {{ '%d' | format(obj['probability']*100.0|float) }}%</br>
                {% endfor %}
             {% endif %}
             </p>
             <p>Elapsed time: {{ result[3] }} sec</p>
           {% endif %}
-        {% endif %}
-        </div>
+        {% endif %}        
+        </div-->
 
-        <div class="form-group">
+        <!--div class="form-group">
           <label for="submitImageFile">Upload an image.</label>
           <input type="file" class="form-control-file" name="submitImageFile" id="submitImageFile">
-        </div>
+        </div-->
 
         <!--button class="btn btn-primary btn-lg btn-block" type="submit">Detect!</button-->
       </form>
@@ -132,9 +131,10 @@
       <div class="col-12 col-md-5">
         <h5>AI Research</h5>
         <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="/task01" target="_blank">Object Detection(COCO Dataset)</a></li>
-            <li><a class="text-muted" href="/task02">Object Detection(Crested Gecko Dataset)</a></li>
+            <li><a class="text-muted" href="/task01">Object Detection(COCO Dataset)</a></li>
+            <li><a class="text-muted" href="/task02" target="_blank">Object Detection(Crested Gecko Dataset)</a></li>
             <li><a class="text-muted" href="/task03">Object Detection(Tsinghua-Tencent 100K)</a></li>
+	    <li><a class="text-muted" href="/task04">Clova Custom Extension(MyPet)</a></li>
         </ul>
       </div>
       <div class="col-12 col-md-3">
@@ -153,7 +153,10 @@
 <script src="{{ url_for('static', filename='js/jquery-3.3.1.slim.min.js') }}"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
       <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+
+
   <script type="text/javascript">
+
 var disableScroll = false;
 var scrollPos = 0;
 function stopScroll() {
@@ -170,18 +173,20 @@ $(function(){
     $(window).bind('touchmove', function(){
          $(window).trigger('scroll');
     });
-});  
+});
 
 
-    $(document).ready(
+      $(document).ready(
         function(){
           $('#classifyfile').attr('disabled',true);
           $('#submitImageFile').change(
             function(){
               if ($(this).val()){
+                
                
-                  $('#loader-circle').show();
                   //$('body').css({'overflow':'hidden'});
+                  //$('#loader-circle').addClass('is-active');
+                  $('#loader-circle').show();
                   stopScroll();
                   $('#formupload').submit();
               }

@@ -1,3 +1,4 @@
+import os
 import abc
 import json
 import redis
@@ -8,9 +9,9 @@ from Crypto.Signature import PKCS1_v1_5
 from Crypto.Hash import SHA256
 from Crypto.PublicKey import RSA
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6347
-REDIS_DB = 0
+REDIS_HOST = os.environ.get('REDIS_HOST')
+REDIS_PORT = os.environ.get('REDIS_PORT')
+REDIS_DB = os.environ.get('REDIS_DB')
 
 def responseTemplate():
     data = {}

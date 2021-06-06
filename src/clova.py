@@ -20,14 +20,12 @@ def responseTemplate():
     data["sessionAttributes"] = {}
     data["response"] = {}
     data["response"]["outputSpeech"] = {}
-    #data["response"]["outputSpeech"]["type"] = "SimpleSpeech"
-    #data["response"]["outputSpeech"]["values"] = {}
-    #data["response"]["outputSpeech"]["values"]["type"] = "PlainText"
-    #data["response"]["outputSpeech"]["values"]["lang"] = "ko"
-    #data["response"]["outputSpeech"]["values"]["value"] = "안녕하세요, 마이펫입니다. 무엇을 도와드릴까요?"
-    data["card"] = {}
-    data["directives"] = []
-    data["shouldEndSession"] = False
+    data["response"]["outputSpeech"]["brief"] = {}
+    data["reprompt"] = {}
+    data["reprompt"]["outputSpeech"] = {}
+    data["response"]["card"] = {}
+    data["response"]["directives"] = []
+    data["response"]["shouldEndSession"] = False
 
     return data
 
@@ -39,14 +37,16 @@ def http_error_response(error_msg, status_code):
 
     js = json.dumps(data)
 
-    res = Response(js, status=status_code, mimetype='application/json')
+    res = Response(js, status=status_code, mimetype='application/json;charset-UTF-8')
     return res
 
 
 def http_success_response(message):
     js = json.dumps(message)
 
-    res = Response(js, status=200, mimetype='application/json')
+    print("response: " + js)
+
+    res = Response(js, status=200, mimetype='application/json;charset-UTF-8')
     return res
 
 def verify(message, signature, public_key_path):
@@ -88,7 +88,9 @@ class ClovaMyPet(ClovaInterface):
 
     def __init__(self, requestBody):
         self.requestBody = requestBody
-
+        print("requestBody: ")
+        print(requestBody)
+    
     def LaunchRequest(self):
         data = responseTemplate()
 
@@ -96,8 +98,12 @@ class ClovaMyPet(ClovaInterface):
         data["response"]["outputSpeech"]["values"] = {}
         data["response"]["outputSpeech"]["values"]["type"] = "PlainText"
         data["response"]["outputSpeech"]["values"]["lang"] = "ko"
-        data["response"]["outputSpeech"]["values"]["value"] = "안녕하세요, 마이펫입니다. 무엇을 도와드릴까요?"
-
+        data["response"]["outputSpeech"]["values"]["value"] = "안녕하세요, 마이펫입니다. 무엇을 도와드릴까요? 집에 있는 반려동물의 상태를 알 수 있어요. 반려동물이 밥먹었는지 물 마셨는지 물어보세요."
+   
+        #data["response"]["outputSpeech"]["brief"]["type"] = "PlainText"
+        #data["response"]["outputSpeech"]["brief"]["lang"] = "ko"
+        #data["response"]["outputSpeech"]["brief"]["value"] = "예) ""오늘 강아지가 밥 먹었어?"", ""오늘 강아지가 물 마셨어?"""
+        
         return http_success_response(data)
 
     def IntentRequest(self):
@@ -107,24 +113,44 @@ class ClovaMyPet(ClovaInterface):
         data["response"]["outputSpeech"]["values"] = {}
         data["response"]["outputSpeech"]["values"]["type"] = "PlainText"
         data["response"]["outputSpeech"]["values"]["lang"] = "ko"
-        #data["response"]["outputSpeech"]["values"]["value"] = "안녕하세요, 마이펫입니다. 무엇을 도와드릴까요?"
+       
+        failedDate = False
+        failedEatType = False
+        
+        date=''
+        eatType=''
 
-        date = self.requestBody["request"]["intent"]["slots"]["date"]["value"]
-        eatType = self.requestBody["request"]["intent"]["slots"]["eatType"]["value"]
-        print("date: "+date+", eatType: "+eatType)
+        if not 'date' in self.requestBody["request"]["intent"]["slots"] or len(self.requestBody["request"]["intent"]["slots"]["date"]) == 0:
+            print("no date field")
+            failedDate = True
+        else:
+            date = self.requestBody["request"]["intent"]["slots"]["date"]["value"]
+            print("date:"+date)
 
-        # key             value
-        # 2021-06-06      {"water":0, "food":0}
-        #try:
-        rdb = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
+        if not 'eatType' in self.requestBody["request"]["intent"]["slots"] or len(self.requestBody["request"]["intent"]["slots"]["eatType"]) == 0:
+            print("no eatType field")
+            failedEatType = True
+        else:
+            eatType = self.requestBody["request"]["intent"]["slots"]["eatType"]["value"]
+            print("eatType:"+eatType)
+       
+        speech_result = "잘 이해하지 못했어요. 다시 말씀해 주세요."
 
-        redisData = rdb.get(date)
-        #print(type(redisData))
-        print(redisData)
-        redisDataJSON = json.loads(redisData)
-            
-        speech_result = "오늘 물 {}번, 밥 {}번 먹었어요.".format(redisDataJSON["water"], redisDataJSON["food"])
-        print(speech_result)
+        if failedDate == False and failedEatType == False:
+           rdb = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
+
+           redisData = rdb.get(date)
+
+           print(redisData)
+
+           redisDataJSON = json.loads(redisData)
+
+           if eatType == '밥':
+              speech_result = "오늘 밥 {} 번 먹었어요.".format(redisDataJSON["food"])
+           elif eatType == '물':
+              speech_result = "오늘 물 {} 번 마셨어요.".format(redisDataJSON["water"])
+
+           print(speech_result)  
             
         data["response"]["outputSpeech"]["values"]["value"] = speech_result
         #except:

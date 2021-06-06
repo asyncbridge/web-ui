@@ -523,7 +523,7 @@ def task04_mypet():
    data = request.get_json()
    requestBody = json.dumps(data)
    
-   print("request body: "+requestBody)
+   #print("request body: "+requestBody)
    #print("signatureCEK type: ")
    print(type(signatureCEK))
    #print("signatureCEK: "+signatureCEK)   

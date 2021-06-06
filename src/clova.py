@@ -114,18 +114,20 @@ class ClovaMyPet(ClovaInterface):
 
         # key             value
         # 2021-06-06      {"water":0, "food":0}
-        try:
-            rdb = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
+        #try:
+        rdb = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
 
-            redisData = rdb.get(data)
-            redisDataJSON = json.loads(redisData)
+        redisData = rdb.get(date)
+        #print(type(redisData))
+        print(redisData)
+        redisDataJSON = json.loads(redisData)
             
-            speech_result = "오늘 물 {}번, 밥 {}번 먹었어요.".format(res["water"], res["food"])
-            print(speech_result)
+        speech_result = "오늘 물 {}번, 밥 {}번 먹었어요.".format(redisDataJSON["water"], redisDataJSON["food"])
+        print(speech_result)
             
-            data["response"]["outputSpeech"]["values"]["value"] = speech_result
-        except:
-            return http_error_response("redis connection error!", 500)
+        data["response"]["outputSpeech"]["values"]["value"] = speech_result
+        #except:
+        #    return http_error_response("redis connection error!", 500)
 
         return http_success_response(data)        
 

@@ -10,3 +10,4 @@ opencv-python
 requests
 matplotlib
 pycryptodome==3.9.9
+redis

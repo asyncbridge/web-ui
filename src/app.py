@@ -524,15 +524,16 @@ def task04_mypet():
    requestBody = json.dumps(data)
    
    print("request body: "+requestBody)
-   print("signatureCEK type: ")
+   #print("signatureCEK type: ")
    print(type(signatureCEK))
-   print("signatureCEK: "+signatureCEK)   
+   #print("signatureCEK: "+signatureCEK)   
  
-   iclova = ClovaMyPet()
+   iclova = ClovaMyPet(data)
    isValid = iclova.verifySignature(requestBody, signatureCEK)
    
    if isValid == True:
-     return http_success_response("Ok", "Signature CEK is valid.")
+     print("Signature CEK is valid.")
+     return iclova.Run()
    else:
      return http_error_response("Signature CEK is invalid.", 401)
 

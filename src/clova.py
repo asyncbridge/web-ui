@@ -98,7 +98,7 @@ class ClovaMyPet(ClovaInterface):
         data["response"]["outputSpeech"]["values"] = {}
         data["response"]["outputSpeech"]["values"]["type"] = "PlainText"
         data["response"]["outputSpeech"]["values"]["lang"] = "ko"
-        data["response"]["outputSpeech"]["values"]["value"] = "안녕하세요, 마이펫입니다. 무엇을 도와드릴까요? 집에 있는 반려동물의 상태를 알 수 있어요. 반려동물이 밥먹었는지 물 마셨는지 물어보세요."
+        data["response"]["outputSpeech"]["values"]["value"] = "안녕하세요, 마이펫입니다. 무엇을 도와드릴까요? 집에 있는 반려동물의 상태를 알 수 있어요. 반려동물이 밥 먹었는지 물어보세요."
    
         #data["response"]["outputSpeech"]["brief"]["type"] = "PlainText"
         #data["response"]["outputSpeech"]["brief"]["lang"] = "ko"
@@ -149,6 +149,8 @@ class ClovaMyPet(ClovaInterface):
                  speech_result = "오늘 밥 {} 번 먹었어요.".format(redisDataJSON["food"])
               elif eatType == '물':
                  speech_result = "오늘 물 {} 번 마셨어요.".format(redisDataJSON["water"])
+           else:
+               speech_result = '오늘 아직 아무것도 먹지 않았어요.'
 
            print(speech_result)  
             

@@ -139,16 +139,16 @@ class ClovaMyPet(ClovaInterface):
         if failedDate == False and failedEatType == False:
            rdb = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
 
-           redisData = rdb.get(date)
+           if rdb.exists(date):
+              redisData = rdb.get(date)
+              print(redisData)
 
-           print(redisData)
+              redisDataJSON = json.loads(redisData)
 
-           redisDataJSON = json.loads(redisData)
-
-           if eatType == '밥':
-              speech_result = "오늘 밥 {} 번 먹었어요.".format(redisDataJSON["food"])
-           elif eatType == '물':
-              speech_result = "오늘 물 {} 번 마셨어요.".format(redisDataJSON["water"])
+              if eatType == '밥':
+                 speech_result = "오늘 밥 {} 번 먹었어요.".format(redisDataJSON["food"])
+              elif eatType == '물':
+                 speech_result = "오늘 물 {} 번 마셨어요.".format(redisDataJSON["water"])
 
            print(speech_result)  
             
